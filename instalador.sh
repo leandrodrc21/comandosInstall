@@ -6,6 +6,7 @@ sudo apt-get install install-info
 sudo apt-get install git -y
 git version
 git clone git://github.com/leandrodrc21/phplogin.git
+chmod 777 phplogin
 sudo apt-get install mysql-server  -y
 sudo mysql --version
 sudo ./mysql_secure.sh 12345678
