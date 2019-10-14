@@ -1,4 +1,3 @@
-#! /bin/sh
 
 set -o errexit # abort on nonzero exitstatus
 set -o nounset # abort on unbound variable
@@ -55,7 +54,7 @@ if is_mysql_root_password_set; then
 fi
 
 mysql --user=root <<_EOF_
-  alter user 'root'@'localhost' identified by '${db_root_password}';
+  UPDATE mysql.user SET Password=PASSWORD('${db_root_password}') WHERE User='root';
   DELETE FROM mysql.user WHERE User='';
   DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
   DROP DATABASE IF EXISTS test;
