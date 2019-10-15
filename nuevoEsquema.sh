@@ -1,10 +1,13 @@
 #! /bin/sh
-USER="${1}"
 PASSWORD="${2}"
-mysql -u USER -pPASSWORD << EOF
-uninstall plugin validate_password;
+mysql -u root -p << EOF
+CREATE USER 'admin'@'localhost' IDENTIFIED BY '134679';
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
+CREATE USER 'admin'@'%' IDENTIFIED BY '134679';
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;
+DROP USER 'root'@'localhost';
 create database IF NOT EXISTS  miphp;
-CREATE USER IF NOT EXISTS  'php'@'localhost' identified by '134679';
+CREATE USER IF NOT EXISTS  'admin'@'localhost' identified by PASSWORD;
 GRANT ALL PRIVILEGES ON miphp.* TO php@localhost;
 FLUSH PRIVILEGES;
 use miphp;
