@@ -1,4 +1,5 @@
 #! /bin/sh
+service mysql start;
 mysql --user=root << EOF
 CREATE USER 'admin'@'localhost' IDENTIFIED BY '134679';
 FLUSH PRIVILEGES;
